@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  # Пока оставим пустую заглушку или добавим простейший образ, 
+  # чтобы конфиг был валидным. Например, hello-world:
+  placeholder:
+    image: hello-world
+    networks:
+      - salih-i-my-netology-hw
+
+volumes:
+  # Здесь в будущем будут описываться диски для баз данных
+  my-data:
+
+networks:
+  salih-i-my-netology-hw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
