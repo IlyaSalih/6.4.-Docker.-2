@@ -11,6 +11,13 @@ services:
       - "9090:9090"
     networks:
       - salih-i-my-netology-hw
+  salih-i-netology-pushgateway:
+    image: prom/pushgateway:latest
+    container_name: salih-i-netology-pushgateway
+    ports:
+      - "9091:9091"
+    networks:
+      - salih-i-my-netology-hw
 
 volumes:
   prometheus-data:
