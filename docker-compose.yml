@@ -1,16 +1,19 @@
 version: '3.8'
 
 services:
-  # Пока оставим пустую заглушку или добавим простейший образ, 
-  # чтобы конфиг был валидным. Например, hello-world:
-  placeholder:
-    image: hello-world
+  salih-i-netology-prometheus:
+    image: prom/prometheus:latest
+    container_name: salih-i-netology-prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
     networks:
       - salih-i-my-netology-hw
 
 volumes:
-  # Здесь в будущем будут описываться диски для баз данных
-  my-data:
+  prometheus-data:
 
 networks:
   salih-i-my-netology-hw:
