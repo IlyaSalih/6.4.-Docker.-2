@@ -1,9 +1,8 @@
-version: '3.8'
-
 services:
   salih-i-netology-prometheus:
     image: prom/prometheus:latest
     container_name: salih-i-netology-prometheus
+    restart: always
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
@@ -15,6 +14,9 @@ services:
   salih-i-netology-pushgateway:
     image: prom/pushgateway:latest
     container_name: salih-i-netology-pushgateway
+    restart: always
+    depends_on:
+      - salih-i-netology-prometheus
     ports:
       - "9091:9091"
     networks:
@@ -23,6 +25,9 @@ services:
   salih-i-netology-grafana:
     image: grafana/grafana:latest
     container_name: salih-i-netology-grafana
+    restart: always
+    depends_on:
+      - salih-i-netology-prometheus
     ports:
       - "80:3000"
     volumes:
@@ -43,3 +48,4 @@ networks:
     ipam:
       config:
         - subnet: 10.5.0.0/16
+
