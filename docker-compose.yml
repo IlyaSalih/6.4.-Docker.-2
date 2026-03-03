@@ -11,6 +11,7 @@ services:
       - "9090:9090"
     networks:
       - salih-i-my-netology-hw
+
   salih-i-netology-pushgateway:
     image: prom/pushgateway:latest
     container_name: salih-i-netology-pushgateway
@@ -19,8 +20,22 @@ services:
     networks:
       - salih-i-my-netology-hw
 
+  salih-i-netology-grafana:
+    image: grafana/grafana:latest
+    container_name: salih-i-netology-grafana
+    ports:
+      - "80:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./grafana/custom.ini:/etc/grafana/grafana.ini
+    environment:
+      - GF_PATHS_CONFIG=/etc/grafana/grafana.ini
+    networks:
+      - salih-i-my-netology-hw
+
 volumes:
   prometheus-data:
+  grafana-data:
 
 networks:
   salih-i-my-netology-hw:
